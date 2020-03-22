@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "version": 1, 
+  "version": 1,
   "newProjectRoot": "projects",
   "projects": {
     "web-tesis-ng": {
@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "web-tesis-ng"
+    }
+  },
+  "defaultProject": "web-tesis-ng",
+  "cli": {
+    "analytics": "25c144f0-5eca-4014-8900-201d356feab9"
+  }
 }
