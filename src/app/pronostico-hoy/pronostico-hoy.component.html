@@ -1,32 +1,50 @@
 <div class="row">
 	<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-		<div class="pronostico-hoy">
-			<p>Buenos Aires</p>
-			<img class="img-pronostico" src="public/images/icons/01d.svg">
-			<p>20°</p>
-			<p>Parcialmente nublado</p> 
-		</div>    
+		<div id="form-pronostico">
+			<input class="form-control input-angular" type="text" name="buscar_ciudad" placeholder="Ingrese una ciudad" [(ngModel)]="inputBuscarCiudad">
+			<button class="btn btn-success btn-angular" (click)="buscarCiudad()">Consultar</button>
+			<div class="error-ciudad">
+				<p>{{ error }}</p>
+			</div>          
+		</div>
 	</div>
 
-	<div class="pronostico-info">
-		<p>1 enero del 2020</p>
+	<div class="offset-lg-1 offset-md-1 offset-sm-1 offset-xs-1"></div>
+
+	<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
+
 		<div class="row">
-			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-				<div class="info-clima">
-				  	<p>Min°/Max°:</p>
-				  	<p>20°/27°</p>
-				</div>
+			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+				<div class="pronostico-hoy">
+					<p>{{ city }}</p>
+					<img class="img-pronostico" src="{{ icon }}">
+					<p>{{ temp }}°</p>
+					<p>{{ descrip }}</p> 
+				</div>    
 			</div>
-			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-				<div class="info-clima">
-				  	<p>Alba/Ocaso:</p>
-				  	<p>07:30/18:20</p>
+
+			<div class="pronostico-info">
+				<p>{{ fecha }}</p>
+				<div class="row">
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+						<div class="info-clima">
+						  	<p>Min°/Max°:</p>
+						  	<p>{{ temp_min }}°/{{ temp_max }}°</p>
+						</div>
+					</div>
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+						<div class="info-clima">
+						  	<p>Alba/Ocaso:</p>
+						  	<p>{{ sunrise }}/{{ sunset }}</p>
+						</div>
+					</div>
 				</div>
+				<p><strong>Humedad: </strong>{{ hum }}%</p>
+				<p><strong>Viento: </strong> {{ wind }} km/h</p>
+				<p><strong>Visibilidad: </strong>{{ vis }} m.</p>
+				<p><strong>Presión: </strong>{{ press }} mbar.</p>
 			</div>
 		</div>
-		<p><strong>Humedad: </strong>50%</p>
-		<p><strong>Viento: </strong> 10 km/h</p>
-		<p><strong>Visibilidad: </strong>10000 m.</p>
-		<p><strong>Presión: </strong>1024 mbar.</p>
+
 	</div>
 </div>
