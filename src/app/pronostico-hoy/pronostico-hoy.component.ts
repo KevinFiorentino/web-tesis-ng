@@ -10,8 +10,7 @@ import { HttpClient } from '@angular/common/http';
 
 export class PronosticoHoyComponent implements OnInit {
 
-
-	inputBuscarCiudad: string;
+	buscar_ciudad: string;
 
 	descrip: string;
 	icon: string;
@@ -30,12 +29,13 @@ export class PronosticoHoyComponent implements OnInit {
 
 	error: string;
 
+	//Pasamos el servicio HTTP como parámetro al constructor
 	constructor(public httpClient: HttpClient) {
 
-		var meses 	= new Array ("Enero", "Febrero", "Marzo", "Abril", "Mayo", 
+		let meses 	= new Array ("Enero", "Febrero", "Marzo", "Abril", "Mayo", 
 			"Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre")
-		var f 		= new Date()
-		var fecha 	= f.getDate() + " de " + meses[f.getMonth()] + " de " + f.getFullYear()
+		let f 		= new Date()
+		let fecha 	= f.getDate() + " de " + meses[f.getMonth()] + " de " + f.getFullYear()
 
 		this.descrip 	= '.....';
 		this.icon 		= 'public/images/icons/clima_default.png';
@@ -60,32 +60,55 @@ export class PronosticoHoyComponent implements OnInit {
 
 	buscarCiudad(): void {
 
-		this.httpClient.get('https://api.openweathermap.org/data/2.5/weather?q=Bogota&units=metric&appid=f3f376b99fe63334a561bad62acb4f94')
+		this.httpClient.get('https://api.openweathermap.org/data/2.5/weather?q=' + this.buscar_ciudad + '&units=metric&appid=f3f376b99fe63334a561bad62acb4f94')
 		.subscribe((response) => {
 
-			var sunrise = new Date(response.sys.sunrise * 1000)
-			var sunrise_hours = sunrise.getHours()
-			var sunrise_minutes = "0" + sunrise.getMinutes()
+			let sunrise = new Date(response['sys']['sunrise'] * 1000)
+			let sunrise_hours = sunrise.getHours()
+			let sunrise_minutes = "0" + sunrise.getMinutes()
 
-			var sunset = new Date(response.sys.sunset * 1000)
-			var sunset_hours = sunset.getHours()
-			var sunset_minutes = "0" + sunset.getMinutes()
+			let sunset = new Date(response['sys']['sunset'] * 1000)
+			let sunset_hours = sunset.getHours()
+			let sunset_minutes = "0" + sunset.getMinutes()
 
-			this.descrip 	= this.getDescription(response.weather[0].icon);
-			this.icon 		= 'public/images/icons/' + response.weather[0].icon + '.svg';
-			this.temp 		= (Math.round(response.main.temp)).toString();
-			this.temp_min 	= (Math.floor(response.main.temp_min)).toString();
-			this.temp_max 	= (Math.ceil(response.main.temp_max)).toString();
-			this.press 		= response.main.pressure;
-			this.hum 		= response.main.humidity;
-			this.vis 		= response.visibility;
-			this.wind 		= response.wind.speed;
+			this.descrip 	= this.getDescription(response['weather'][0]['icon']);
+			this.icon 		= 'public/images/icons/' + response['weather'][0]['icon'] + '.svg';
+			this.temp 		= (Math.round(response['main']['temp'])).toString();
+			this.temp_min 	= (Math.floor(response['main']['temp_min'])).toString();
+			this.temp_max 	= (Math.ceil(response['main']['temp_max'])).toString();
+			this.press 		= response['main']['pressure'];
+			this.hum 		= response['main']['humidity'];
+			this.vis 		= response['visibility'];
+			this.wind 		= response['wind']['speed'];
 			this.sunrise 	= sunrise_hours + ':' + sunrise_minutes.substr(-2);
 			this.sunset 	= sunset_hours + ':' + sunset_minutes.substr(-2);
-			this.id 		= response.id;
-			this.city 		= response.name;
+			this.id 		= response['id'];
+			this.city 		= response['name'];
 
-        });
+        },
+        (error) => {
+        
+        	this.error 		= 'Ciudad no encontrada';
+
+			this.descrip 	= '.....';
+			this.icon 		= 'public/images/icons/clima_default.png';
+			this.temp 		= '--';
+			this.temp_min 	= '--';
+			this.temp_max 	= '--';
+			this.press 		= '-';
+			this.hum 		= '-';
+			this.vis 		= '-';
+			this.wind 		= '-';
+			this.sunrise 	= '--:--';
+			this.sunset 	= '--:--';
+			this.id 		= '';
+			this.city 		= '---';
+
+			setTimeout(() => {
+				this.error 	= '';
+			}, 3000);
+      
+      	});
 
 	}
 
