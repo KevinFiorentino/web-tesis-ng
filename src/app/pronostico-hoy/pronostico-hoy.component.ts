@@ -112,7 +112,7 @@ export class PronosticoHoyComponent implements OnInit {
 
 	}
 
-	getDescription(icon: string) {
+	getDescription(icon: string): string {
 		switch(icon) {
 			case '01d': case '01n': {
 				return "Cielo despejado";
