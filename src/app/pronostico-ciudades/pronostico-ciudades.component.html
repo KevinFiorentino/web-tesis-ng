@@ -21,7 +21,7 @@
 					<td>{{ ciudad.temp_min }}°/{{ ciudad.temp_max }}°</td>
 					<td>{{ ciudad.hum }}%</td>
 					<td>
-						<button class="button-del">
+						<button class="button-del" (click)="removeCiudadTable(ciudad.id)">
 							<img src="public/images/icons/delete.svg">
 						</button>
 					</td>
@@ -41,7 +41,7 @@
 				<input class="form-control input-angular" type="text" name="add_ciudad" placeholder="Ingrese una ciudad" [(ngModel)]="add_ciudad">
 				<button class="btn btn-success btn-angular" (click)="addCiudadTable()">Consultar</button>
 				<div class="error-ciudad">
-					<p>Error</p>
+					<p>{{ error_table }}</p>
 				</div>          
 			</div>
 		</div>
