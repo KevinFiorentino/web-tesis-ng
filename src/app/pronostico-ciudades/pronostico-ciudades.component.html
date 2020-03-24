@@ -1,27 +1,49 @@
-<table class="table table-hover-angular">
-	<thead>
-	<tr class="col-name">
-		<th scope="col">Ciudad</th>
-		<th scope="col">Actual</th>
-		<th scope="col">Max°/Min°</th>
-		<th scope="col">Humedad</th>
-	</tr>
-	</thead>
-	<tbody>
-	<tr>
-		<th scope="row">Roma</th>
-		<td class="img-cont-ciudad img-v img-h-ciudad">
-			<span>17°</span>
-			<img class="img-ciudad" src="public/images/icons/01d.svg">
-		</td>
-		<td>15°/25°</td>
-		<td>50%</td>
-		<td>
-			<button class="button-del">
-				<img src="public/images/icons/delete.svg">
-			</button>
-		</td>
-	</tr>
+<div class="row">
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
-	</tbody>
-</table>
+		<table class="table table-hover-angular">
+			<thead>
+			<tr class="col-name">
+				<th scope="col">Ciudad</th>
+				<th scope="col">Actual</th>
+				<th scope="col">Max°/Min°</th>
+				<th scope="col">Humedad</th>
+			</tr>
+			</thead>
+			<tbody>
+
+			<tr>
+				<th scope="row">Roma</th>
+				<td class="img-cont-ciudad img-v img-h-ciudad">
+					<span>17°</span>
+					<img class="img-ciudad" src="public/images/icons/01d.svg">
+				</td>
+				<td>15°/25°</td>
+				<td>50%</td>
+				<td>
+					<button class="button-del">
+						<img src="public/images/icons/delete.svg">
+					</button>
+				</td>
+			</tr>
+
+			</tbody>
+		</table>
+
+	</div>
+</div>
+
+<div class="row">
+	<div class="container">
+		<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+			<div id="form-pronostico">
+				<h3>Agregar ciudad a la lista</h3>  
+				<input class="form-control input-angular" type="text" name="add_ciudad" placeholder="Ingrese una ciudad" [(ngModel)]="add_ciudad">
+				<button class="btn btn-success btn-angular" (click)="addCiudadTable()">Consultar</button>
+				<div class="error-ciudad">
+					<p>Error</p>
+				</div>          
+			</div>
+		</div>
+	</div>
+</div>
