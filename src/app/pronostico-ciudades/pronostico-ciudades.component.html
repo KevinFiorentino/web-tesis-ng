@@ -12,21 +12,20 @@
 			</thead>
 			<tbody>
 
-			<tr *ngFor="let ciudad of ciudadesList">
-				<th scope="row">{{ ciudad.city }}</th>
-				<td class="img-cont-ciudad img-v img-h-ciudad">
-					<span>{{ ciudad.temp }}°</span>
-					<img class="img-ciudad" src="{{ ciudad.icon }}">
-				</td>
-				<td>{{ ciudad.temp_min }}°/{{ ciudad.temp_max }}°</td>
-				<td>{{ ciudad.hum }}%</td>
-				<td>
-					<button class="button-del">
-						<img src="public/images/icons/delete.svg">
-					</button>
-				</td>
-			</tr>
-
+				<tr *ngFor="let ciudad of ciudadesList">
+					<th scope="row">{{ ciudad.city }}</th>
+					<td class="img-cont-ciudad img-v img-h-ciudad">
+						<span>{{ ciudad.temp }}°</span>
+						<img class="img-ciudad" src="{{ ciudad.icon }}">
+					</td>
+					<td>{{ ciudad.temp_min }}°/{{ ciudad.temp_max }}°</td>
+					<td>{{ ciudad.hum }}%</td>
+					<td>
+						<button class="button-del">
+							<img src="public/images/icons/delete.svg">
+						</button>
+					</td>
+				</tr>
 
 			</tbody>
 		</table>
