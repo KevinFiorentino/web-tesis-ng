@@ -12,22 +12,22 @@ export class PronosticoHoyComponent implements OnInit {
 
 	buscar_ciudad: string;
 
-	descrip: string;
-	icon: string;
-	temp: string;
-	temp_min: string;
-	temp_max: string;
-	press: string;
-	hum: string;
-	vis: string;
-	wind: string;
-	sunrise: string;
-	sunset: string;
-	id: string;
-	city: string;
-	fecha: string;
+	descrip: 	string;
+	icon: 		string;
+	temp: 		string;
+	temp_min: 	string;
+	temp_max: 	string;
+	press: 		string;
+	hum: 		string;
+	vis: 		string;
+	wind: 		string;
+	sunrise: 	string;
+	sunset: 	string;
+	id: 		string;
+	city: 		string;
+	fecha: 		string;
 
-	error: string;
+	error: 		string;
 
 	//Pasamos el servicio HTTP como parámetro al constructor
 	constructor(public httpClient: HttpClient) {
@@ -63,13 +63,13 @@ export class PronosticoHoyComponent implements OnInit {
 		this.httpClient.get('https://api.openweathermap.org/data/2.5/weather?q=' + this.buscar_ciudad + '&units=metric&appid=f3f376b99fe63334a561bad62acb4f94')
 		.subscribe((response) => {
 
-			let sunrise = new Date(response['sys']['sunrise'] * 1000)
-			let sunrise_hours = sunrise.getHours()
+			let sunrise 		= new Date(response['sys']['sunrise'] * 1000)
+			let sunrise_hours 	= sunrise.getHours()
 			let sunrise_minutes = "0" + sunrise.getMinutes()
 
-			let sunset = new Date(response['sys']['sunset'] * 1000)
-			let sunset_hours = sunset.getHours()
-			let sunset_minutes = "0" + sunset.getMinutes()
+			let sunset 			= new Date(response['sys']['sunset'] * 1000)
+			let sunset_hours 	= sunset.getHours()
+			let sunset_minutes 	= "0" + sunset.getMinutes()
 
 			this.descrip 	= this.getDescription(response['weather'][0]['icon']);
 			this.icon 		= 'public/images/icons/' + response['weather'][0]['icon'] + '.svg';
