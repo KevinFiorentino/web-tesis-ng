@@ -1,9 +1,11 @@
 ## Web desarrollada para obtener el título de Licenciado en Sistemas
 
-- URL: https://webtfikevin-ng.herokuapp.com/
-
 #### App Pronósitco del Tiempo
 -   Angular 9
+
+#### URL
+- https://webtfikevin.herokuapp.com/
+- https://webtfikevin-ng.herokuapp.com/
 
 ##### Estudiante: Fiorentino, Kevin Emanuel
 
@@ -11,4 +13,7 @@
 
 ---
 
-###### Ver también: https://github.com/KevinFiorentino/web-tfi
+###### Ver también:
+
+- https://github.com/KevinFiorentino/web-tfi
+- https://github.com/KevinFiorentino/web-tesis-react
