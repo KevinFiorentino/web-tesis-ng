@@ -14,6 +14,12 @@ https://webtesiskevin-ng.herokuapp.com/
 #### Instalación Angular con Express (Node.js) para deployar en Heroku 
 - https://medium.com/@roliver_javier/como-desplegar-tu-aplicacion-de-angular-en-heroku-7b9941b6d39
 
+#### Compilar Proyecto
+
+- npm install
+- ng build --prod
+- node server.js
+
 ---
 
 ### Comandos Básicos Angular
