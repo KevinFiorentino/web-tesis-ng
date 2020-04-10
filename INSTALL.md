@@ -29,11 +29,6 @@ https://webtesiskevin-ng.herokuapp.com/
 - ng build
 - ng serve
 
-### Comandos Básicos NPM
-
-- npm install
-- npm start
-
 ---
 
 ### Tutoriales
