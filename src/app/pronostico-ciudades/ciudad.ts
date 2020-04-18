@@ -21,6 +21,7 @@ export class Ciudad implements OnInit {
 		this.id 		= 	id;
 	}
 
+	/* Función que se puede ejecutar al instanciar la clase */
 	ngOnInit(): void {}
 
 }

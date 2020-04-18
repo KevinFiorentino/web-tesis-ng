@@ -10,8 +10,11 @@ import { Ciudad } from './ciudad';
 	styleUrls: ['./pronostico-ciudades.component.css']
 })
 
+/* Clase del componente PronosticoCiudadesComponent */
+/* Los valores de los atributos se renderizan al HTML con las interpolaciones {{ }} */
 export class PronosticoCiudadesComponent implements OnInit {
 
+	/* Atributos */
 	add_ciudad: string;
 	error_table: string;
 
@@ -22,14 +25,17 @@ export class PronosticoCiudadesComponent implements OnInit {
 
 		this.error_table = '';
 
+		/* Ciudades predefinidas para mostrar */
 		let cities = ["Bogota", "Buenos Aires", "Hong Kong", "Nueva York", "Madrid", "Mosku", 
 			"Paris", "Roma", "Sidney", "Viena"];
 
+		/* Cargamos la tabla con el template al iniciar el componente */
 		cities.forEach(value => {
 
 			this.httpClient.get('https://api.openweathermap.org/data/2.5/weather?q=' + value + '&units=metric&appid=f3f376b99fe63334a561bad62acb4f94')
 			.subscribe((response) => {
 
+				/* Instanciamos Ciudad con cada consulta a la API */
 				let city = new Ciudad(
 					'public/images/icons/' + response['weather'][0]['icon'] + '.svg', 
 					(Math.round(response['main']['temp'])).toString(), 
@@ -47,13 +53,17 @@ export class PronosticoCiudadesComponent implements OnInit {
 
 	}
 
+	/* Función que se ejecuta al iniciar el componente */
+	/* Ver ciclo de vida de Angular */
 	ngOnInit(): void {}
 
+	/* Función que se ejecuta para agregar ciudad a la tabla */
 	addCiudadTable(): void {
 
 		this.httpClient.get('https://api.openweathermap.org/data/2.5/weather?q=' + this.add_ciudad + '&units=metric&appid=f3f376b99fe63334a561bad62acb4f94')
 		.subscribe((response) => {
 
+			/* Agregamos ciudad a la lista que luego se renderiza al HTML con el template */
 			let city = new Ciudad(
 				'public/images/icons/' + response['weather'][0]['icon'] + '.svg', 
 				(Math.round(response['main']['temp'])).toString(), 
@@ -79,6 +89,7 @@ export class PronosticoCiudadesComponent implements OnInit {
 
 	}
 
+	/* Función para borrar ciudad de la lista */
 	removeCiudadTable(id: string): void {
 		let lstCityRemove = this.ciudadesList.filter(ciudad => ciudad.id !== id);
     	this.ciudadesList = lstCityRemove;

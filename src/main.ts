@@ -1,3 +1,5 @@
+/* Script pricipal que renderiza el componente padre al index.html */
+
 import { enableProdMode } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 

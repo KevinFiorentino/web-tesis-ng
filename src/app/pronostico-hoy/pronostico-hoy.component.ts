@@ -8,8 +8,11 @@ import { HttpClient } from '@angular/common/http';
 	styleUrls: ['./pronostico-hoy.component.css']
 })
 
+/* Clase del componente PronosticoHoyComponent */
+/* Los valores de los atributos se renderizan al HTML con las interpolaciones {{ }} */
 export class PronosticoHoyComponent implements OnInit {
 
+	/* Atributos */
 	buscar_ciudad: string;
 
 	descrip: 	string;
@@ -32,11 +35,13 @@ export class PronosticoHoyComponent implements OnInit {
 	//Pasamos el servicio HTTP como parámetro al constructor
 	constructor(public httpClient: HttpClient) {
 
+		/* Seteo de la fecha de hoy */
 		let meses 	= new Array ("Enero", "Febrero", "Marzo", "Abril", "Mayo", 
 			"Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre")
 		let f 		= new Date()
 		let fecha 	= f.getDate() + " de " + meses[f.getMonth()] + " de " + f.getFullYear()
 
+		/* Seteo valores por defecto de los atributos al iniciar el componente */
 		this.descrip 	= '.....';
 		this.icon 		= 'public/images/icons/clima_default.png';
 		this.temp 		= '--';
@@ -56,13 +61,17 @@ export class PronosticoHoyComponent implements OnInit {
 
 	}
 
+	/* Función que se ejecuta al iniciar el componente */
+	/* Ver ciclo de vida de Angular */
 	ngOnInit(): void {}
 
+	/* Función que se ejecuta al consultar el pronostico de una ciudad */
 	buscarCiudad(): void {
 
 		this.httpClient.get('https://api.openweathermap.org/data/2.5/weather?q=' + this.buscar_ciudad + '&units=metric&appid=f3f376b99fe63334a561bad62acb4f94')
 		.subscribe((response) => {
 
+			/* Variable aux para la hora de Amanecer y Atardecer */
 			let sunrise 		= new Date(response['sys']['sunrise'] * 1000)
 			let sunrise_hours 	= sunrise.getHours()
 			let sunrise_minutes = "0" + sunrise.getMinutes()
@@ -71,6 +80,7 @@ export class PronosticoHoyComponent implements OnInit {
 			let sunset_hours 	= sunset.getHours()
 			let sunset_minutes 	= "0" + sunset.getMinutes()
 
+			/* Seteo de atributos con los datos de la API */
 			this.descrip 	= this.getDescription(response['weather'][0]['icon']);
 			this.icon 		= 'public/images/icons/' + response['weather'][0]['icon'] + '.svg';
 			this.temp 		= (Math.round(response['main']['temp'])).toString();
@@ -87,7 +97,8 @@ export class PronosticoHoyComponent implements OnInit {
 
         },
         (error) => {
-        
+		
+			/* En caso de error, vuelve todo a sus valores por defecto */
         	this.error 		= 'Ciudad no encontrada';
 
 			this.descrip 	= '.....';
@@ -112,6 +123,7 @@ export class PronosticoHoyComponent implements OnInit {
 
 	}
 
+	/* Función aux para obtener descripción del clima */
 	getDescription(icon: string): string {
 		switch(icon) {
 			case '01d': case '01n': {
